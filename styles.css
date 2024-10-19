@@ -164,9 +164,10 @@ footer {
     }
 
     header img.team-logo {
-        width: 80px;
-        margin-bottom: 10px;
-        position: relative;
+        width: 80px; /* Adjust logo size for mobile */
+        margin-bottom: 10px; /* Space below the logo */
+        position: relative; /* Use relative positioning for centering */
+        left: 0; /* Center horizontally */
     }
 
     header h1 {
@@ -177,12 +178,12 @@ footer {
     nav {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; /* Center align the buttons */
     }
 
     nav ul {
         flex-direction: column;
-        align-items: center;
+        align-items: center; /* Center align the list items */
     }
 
     nav ul li {
@@ -192,31 +193,8 @@ footer {
 
     nav ul li a {
         padding: 8px 12px;
-        width: 100%;
+        width: 100%; /* Make buttons take full width */
         text-align: center;
         font-size: 14px;
     }
-}
-
-/* Footer always at the bottom fix */
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-#main-content {
-    flex: 1; /* Allow the main content to grow and fill the space */
-}
-
-footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    background-color: #214627;
-    padding: 10px 0;
 }
