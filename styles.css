@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    background: #353535;
+    color: #fff; /* White text for links */
+    text-decoration: none;
+    padding: 10px 15px; /* Adjust padding for better button look */
+    transition: background 0.3s, transform 0.3s; /* Transition for background and scale */
+    border-radius: 5px; /* Rounded corners */
+}
+
+nav ul li a:hover {
+    background: #27ae39; /* Bright green on hover */
+    transform: scale(1.1); /* Scale up the button */
+}
+
+
+section {
+    padding: 20px 0;
+}
+
+.container {
+    width: 80%;
+    height: %;
+    margin: 0 auto;
+}
+
+
+
+.about, .team, .competitions {
+    background: #1b1b1b; /* Light green background */
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.team-member {
+    margin-bottom: 20px;
+}
+
+footer {
+    background: #214627; /* Darker green */
+    color: #fff;
+    text-align: center;
+    padding: 5px 0; /* Reduced padding */
+
+}
+
+
+.contact-button {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 320px;
+}
+
+.contact-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #11522c; /* Bright green */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.contact-link:hover {
+    background: #27ae39; /* Darker green on hover */
+}
+.team-photo {
+    width: 130px; /* Set width */
+    height: auto; /* Set height to match width for a square */
+    border-radius: 5px; /* Slightly round the corners */
+    margin-right: 15px; /* Space between image and text */
+    object-fit: cover; /* Ensures the image covers the entire area */
+}
+body {
+    font-family: 'Open Sans', sans-serif; /* Body font */
+    line-height: 1.6;
+    background-color: #141414;
+    color: #ffffff;
+    display: flex; /* Use Flexbox for the body */
+    flex-direction: column; /* Arrange items in a column */
+}
+
+header {
+    position: relative;
+    background: #353535; /* Darker green */
+    color: #fff;
+    padding: 10px 20px;
+}
+
+header h1 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif; /* Header font */
+    font-size: 2.5em; /* Larger font size for the header */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #018317; /* Darker text color for headings */
+    font-family: 'Montserrat', sans-serif; /* Header font */
+    font-size: 2em; /* Adjust heading size */
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif; /* Header font for subheadings */
+    margin: 10px 0; /* Space around subheadings */
+}
+h4 {
+    font-family: 'Montserrat', sans-serif; /* Header font for subheadings */
+    margin: 10px 0; /* Space around subheadings */
+    color:#4da05a
+}
+p {
+    font-family: 'Open Sans', sans-serif; /* Body font for paragraphs */
+    margin: 10px 0; /* Space around paragraphs */
+}
+
+.team-logo {
+    position: absolute; /* Poziționează logo-ul în colțul din stânga sus */
+    top: 10px; /* Distanță de la partea de sus */
+    left: 20px; /* Distanță de la marginea din stânga */
+    height: 90px; /* Înălțimea logo-ului (ajustează după nevoie) */
+    width: auto; /* Lățimea automată pentru a menține proporțiile */
+}
+
+#main-content {
+    flex: 1; /* Allow the main content to grow and fill the space */
+}
+
+html, body {
+    height: 100%; /* Ensure the body takes the full height of the viewport */
+    margin: 0; /* Remove default margin */
+}
+.curs-photo {
+    width: 250px; /* Set width */
+    height: auto; /* Set height to match width for a square */
+    border-radius: 5px; /* Slightly round the corners */
+    margin-right: 15px; /* Space between image and text */
+    object-fit: cover; /* Ensures the image covers the entire area */
+}
