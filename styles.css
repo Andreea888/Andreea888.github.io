@@ -80,7 +80,7 @@ footer {
 
 /* Team photo styles */
 .team-photo, .curs-photo {
-    width: 130px; /* Set width */
+    width: 170px; /* Set width */
     height: auto; /* Maintain aspect ratio */
     border-radius: 5px; /* Rounded corners */
     margin-right: 15px; /* Space between image and text */
