@@ -164,7 +164,8 @@ footer {
     }
 
     header img.team-logo {
-        width: 80px; /* Adjust logo size for mobile */
+       width: 80px; /* Adjust logo size for mobile */
+        height: auto;
         margin-bottom: 10px; /* Space below the logo */
         position: relative; /* Use relative positioning for centering */
         left: 0; /* Center horizontally */
