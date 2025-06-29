@@ -1,7 +1,12 @@
+@use "./styles/fonts.scss";
+@use "./styles/reset.scss";
+@use "./styles/variables.scss" as vars;
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Funny Hello", Inter
 }
 
 :root {
@@ -31,12 +36,50 @@
 
 //Modals
 
-.modal{
-  position: absolute;
+.modal {
+  position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  align-content: center;
+  max-width: 700px;
+  width: 100%;
+  transform: translate(-50%, 50%);
+  font-family: "Funny Hello";
   font-size: 32px;
   z-index: 9999;
+  background-color: vars.$base-beige;
+  border: 3px solid rgb(216, 112, 112);   
+  border-radius: 20px;
   display: none;
+}
+.modal h1 {
+  color : rgb(200, 131, 131);
+  text-align: center;
+} 
+.modal p {
+  width: fit-content;
+  margin: 15px;
+  text-align:left;
+  font-family: "Summer Century";
+  font-size: 23px;
+  color : black;
+}
+.modal-exit-button { 
+  position: absolute;
+  top: -16px;
+  right: -5px;
+  border: 2px solid rgb(216, 112, 112);
+  font-size: 24px;
+  background-color: #ffafaf;
+  color: rgb(216, 112, 112);    
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  align-self: end;
+}
+
+.modal-exit-button:hover {
+  background-color: #db8585;;
+  color: rgb(181, 88, 88); 
 }
