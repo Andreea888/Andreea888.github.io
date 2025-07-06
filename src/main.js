@@ -5,10 +5,20 @@ import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { ThreeMFLoader } from 'three/examples/jsm/Addons.js';
 import gsap from "gsap";
+import { Howl } from 'howler'
+
 
 const canvas = document.querySelector("#experience-canvas");
 
 const isMobile = navigator.userAgent.includes("Mobi");
+
+var backgroundMusic = new Howl({
+  src: ["./music/Room_Music.ogg"],
+  loop: true,
+  volume: 1,
+});
+
+backgroundMusic.play();
 
 const sizes = {
   height: window.innerHeight,
@@ -16,6 +26,7 @@ const sizes = {
 }
 
 let isModalOpen = false;
+
 
 const showModal = (modal) => {
   isModalOpen = true;
@@ -54,9 +65,37 @@ const hideModal = (modal) => {
     }
   });
 }
-//Scene
-const scene = new THREE.Scene();
+
+let isNightMode = false;
+let scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
+
+function handleThemeToggle() {
+  isNightMode = !isNightMode;
+
+  room.traverse((child) => {
+  if (child.isMesh && child.material instanceof THREE.MeshBasicMaterial) {
+    // Find a texture key that is included in the mesh name
+    const textureKey = Object.keys(loadedTextures.day).find(key => child.name.includes(key));
+
+    if (textureKey) {
+      child.material.map = isNightMode
+        ? loadedTextures.night[textureKey]
+        : loadedTextures.day[textureKey];
+      child.material.needsUpdate = true;
+    }
+  }
+  });
+  if(isNightMode){
+    scene.background = new THREE.Color(0x121111);
+  }
+  else{
+    scene.background = new THREE.Color(0xffffff);
+  }
+}
+
+
+
 
 // Vectors for Clock Hands
 const yAxisClockShort = [];
@@ -87,23 +126,30 @@ loader.setDRACOLoader(dracoLoader);
 const textureMap = {
   First: {
     day: "/textures/TextureSetOneDenoised.webp",
+    night: "/textures/TextureSetOneDenoisedDark.webp",
   },
   Second: {
     day: "/textures/TextureSetTwoDenoised.webp",
+    night: "/textures/TextureSetTwoDenoisedDark.webp",
   },
   Third: {
     day: "/textures/TextureSetThreeDenoised.webp",
+    night: "/textures/TextureSetThreeDenoisedDark.webp",
   },
   Fourth: {
     day: "/textures/TextureSetFourDenoised.webp",
+    night: "/textures/TextureSetFourDenoisedDark.webp",
   },
   Fifth: {
     day: "/textures/TextureSetFiveDenoised.webp",
-  }
+    night: "/textures/TextureSetFiveDenoisedDark.webp",
+  },
+  
 };
 
 const loadedTextures = {
-  day: {}
+  day: {},
+  night: {},
 };
 
 const modals = {
@@ -144,6 +190,37 @@ window.addEventListener("mousemove", (e) => {
   pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
 });
 
+function checkHovering() {
+  raycaster.setFromCamera(pointer, camera);
+  const intersects = raycaster.intersectObjects(raycasterObjects, true); //array that keeps the intersected objects from my raycasterObjects array (interactable objects array)
+
+  if (intersects.length > 0) { //if something was intersected
+    const firstHit = intersects[0].object; //take the first intersected object
+
+    if (firstHit !== currentHoveredObject) { //if the current intersected is different than the previous
+      if (currentHoveredObject) { //if a previous hovered exists,
+        playHoverAnimation(currentHoveredObject, false); //return the previous to default state animation
+      }
+      //play the animation for firstHit (current hovered object)
+      if (firstHit.name.includes("Button") || firstHit.name.includes("Lamp")) {
+        currentHoveredObject = firstHit;
+        playHoverAnimation(firstHit, true);
+        document.body.style.cursor = "pointer";
+      } else {
+        currentHoveredObject = null;
+        document.body.style.cursor = "default";
+      }
+    }
+  } else { //nothing is being hovered
+    if (currentHoveredObject) {
+      playHoverAnimation(currentHoveredObject, false); //stop animation
+      currentHoveredObject = null; //no current hovered object
+      document.body.style.cursor = "default";
+    }
+  }
+}
+
+
 function handleRaycasterInteraction(){
   if(currentIntersects.length>0){
     const object = currentIntersects[0].object;
@@ -155,6 +232,9 @@ function handleRaycasterInteraction(){
     }
     else if(object.name.includes("Contact_Button")){
       showModal(modals.contact);
+    }
+    else if(object.name.includes("Lamp")){
+      handleThemeToggle();
     }
   }
 }
@@ -185,19 +265,34 @@ window.addEventListener(
 ///TEXTURES
 
 Object.entries(textureMap).forEach(([key, paths]) => {
-  const dayTexture = textureLoader.load(paths.day);
+   const dayTexture = textureLoader.load(paths.day);
   dayTexture.flipY = false;
   dayTexture.colorSpace = THREE.SRGBColorSpace;
+  dayTexture.minFilter = THREE.LinearFilter;
+  dayTexture.magFilter = THREE.LinearFilter;
   loadedTextures.day[key] = dayTexture;
+
+  // Load and configure night texture
+  const nightTexture = textureLoader.load(paths.night);
+  nightTexture.flipY = false;
+  nightTexture.colorSpace = THREE.SRGBColorSpace;
+  nightTexture.minFilter = THREE.LinearFilter;
+  nightTexture.magFilter = THREE.LinearFilter;
+  loadedTextures.night[key] = nightTexture;
 });
 
-loader.load("/models/Room_Portfolio_Final9_Draco.glb", (glb) => {
-  glb.scene.traverse((child) => {
+let room;
+loader.load("/models/Room_Portfolio_Final20.glb", (glb) => {
+  room = glb.scene;
+  room.traverse((child) => {
     if (child.isMesh) {
       Object.keys(textureMap).forEach((key) => {
         if (child.name.includes(key)) {
+          
+          const texture = isNightMode ? loadedTextures.night[key] : loadedTextures.day[key];
+
           const material = new THREE.MeshBasicMaterial({
-            map: loadedTextures.day[key],
+            map: texture,
           });
 
           child.material = material;
@@ -220,7 +315,6 @@ loader.load("/models/Room_Portfolio_Final9_Draco.glb", (glb) => {
             child.userData.initialScale = new THREE.Vector3().copy(child.scale);
             child.userData.initialPosition = new THREE.Vector3().copy(child.position);
             child.userData.initialRotation = new THREE.Euler().copy(child.rotation);
-            
           }
 
           if (child.material.map) {
@@ -230,7 +324,7 @@ loader.load("/models/Room_Portfolio_Final9_Draco.glb", (glb) => {
       });
     }
   });
-  scene.add(glb.scene);
+  scene.add(room);
 });
 
 
@@ -294,6 +388,7 @@ window.addEventListener("resize", () => {
 function playHoverAnimation(object, isHovering){
   gsap.killTweensOf(object.rotation);
   gsap.killTweensOf(object.scale);
+  gsap.killTweensOf(object.position);
   object.userData.isAnimating = true;
   if (isHovering){
     if (object.name.includes("Work")){
@@ -302,12 +397,12 @@ function playHoverAnimation(object, isHovering){
       y: object.userData.initialScale.y * 1.2,
       z: object.userData.initialScale.z * 1.2,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
+      ease: "back.out(1.8)",
       });
       gsap.to(object.rotation,{
       x: object.userData.initialRotation.x + Math.PI / 8,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
+      ease: "back.out(1.8)",
       });
     }
     else if (object.name.includes("About")){
@@ -316,12 +411,11 @@ function playHoverAnimation(object, isHovering){
       y: object.userData.initialScale.y * 1.2,
       z: object.userData.initialScale.z * 1.2,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
-      });
+      ease: "back.out(1.8)",      });
       gsap.to(object.rotation,{
       x: object.userData.initialRotation.x - Math.PI / 8,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
+      ease: "back.out(1.8)",
       });
     }
     if (object.name.includes("Contact")){
@@ -330,12 +424,26 @@ function playHoverAnimation(object, isHovering){
       y: object.userData.initialScale.y * 1.2,
       z: object.userData.initialScale.z * 1.2,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
+      ease: "back.out(1.8)",
       });
       gsap.to(object.rotation,{
       x: object.userData.initialRotation.x + Math.PI/10,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
+      ease: "back.out(1.8)",
+      });
+    }
+    if (object.name.includes("Lamp")){
+      gsap.to(object.scale,{
+      x: object.userData.initialScale.x * 1.2,
+      y: object.userData.initialScale.y * 1.2,
+      z: object.userData.initialScale.z * 1.2,
+      duration: 0.3,
+      ease: "back.out(1.8)",
+      });
+      gsap.to(object.position,{
+      y: object.userData.initialPosition.y + 0.1 ,
+      duration: 0.3,
+      ease: "back.out(1.8)",
       });
     }
 
@@ -346,20 +454,28 @@ function playHoverAnimation(object, isHovering){
       y: object.userData.initialScale.y,
       z: object.userData.initialScale.z,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
+      //ease: "bounce.out(1.8)",
     });
     gsap.to(object.rotation,{
       x: object.userData.initialRotation.x,
       duration: 0.3,
-      ease: "bouncte.out(1.8)",
+      //ease: "bounce.out(1.8)",
       
+    });
+    gsap.to(object.position,{
+      x: object.userData.initialPosition.x,
+      y: object.userData.initialPosition.y,
+      z: object.userData.initialPosition.z,
+      duration: 0.3,
+      //ease: "bounce.in(1.8)",
     });
   }
 }
 
+
 const render = () => {
   controls.update();
-
+  checkHovering();
   // Animate Clock
   const rotationSpeedLong = -0.03;
   const rotationSpeedShort = -0.003;
