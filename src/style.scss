@@ -36,7 +36,7 @@
 
 //Modals
 
-.modal {
+body.day .modal {
   position: relative;
   top: 50%;
   left: 50%;
@@ -52,11 +52,31 @@
   border-radius: 20px;
   display: none;
 }
-.modal h1 {
+body.night .modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  align-content: center;
+  max-width: 700px;
+  width: 100%;
+  transform: translate(-50%, 50%);
+  font-family: "Funny Hello";
+  font-size: 32px;
+  z-index: 9999;
+  background-color: #2e2a35; ;
+  border: 3px solid rgb(21, 18, 25);   
+  border-radius: 20px;
+  display: none;
+}
+body.day .modal h1 {
   color : rgb(200, 131, 131);
   text-align: center;
 } 
-.modal p {
+body.night .modal h1 {
+  color : rgb(207, 204, 246);
+  text-align: center;
+} 
+body.day .modal p {
   width: fit-content;
   margin: 15px;
   text-align:left;
@@ -64,7 +84,15 @@
   font-size: 23px;
   color : black;
 }
-.modal-exit-button { 
+body.night .modal p {
+  width: fit-content;
+  margin: 15px;
+  text-align:left;
+  font-family: "Summer Century";
+  font-size: 23px;
+  color : rgb(230, 230, 230);
+}
+body.day .modal-exit-button { 
   position: absolute;
   top: -16px;
   right: -5px;
@@ -79,7 +107,26 @@
   align-self: end;
 }
 
-.modal-exit-button:hover {
+body.night .modal-exit-button { 
+  position: absolute;
+  top: -16px;
+  right: -5px;
+  border: 2px solid rgb(31, 26, 49);
+  font-size: 24px;
+  background-color: #4c3f5f;
+  color: rgb(25, 22, 49);    
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  align-self: end;
+}
+
+body.day .modal-exit-button:hover {
   background-color: #db8585;;
   color: rgb(181, 88, 88); 
+}
+body.night .modal-exit-button:hover {
+  background-color: #302d5f;;
+  color: rgb(42, 23, 72); 
 }

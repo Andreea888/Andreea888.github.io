@@ -18,6 +18,18 @@ var backgroundMusic = new Howl({
   volume: 1,
 });
 
+var lamp = new Howl({
+ src: ["./music/lamp.ogg"],
+ loop: false,
+ volume: 1,
+});
+
+var click = new Howl({
+ src: ["./music/click.ogg"],
+ loop: false,
+ volume: 1,
+});
+
 backgroundMusic.play();
 
 const sizes = {
@@ -66,12 +78,16 @@ const hideModal = (modal) => {
   });
 }
 
-let isNightMode = false;
+let isNightMode = false; //default day mode
+
 let scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
 
 function handleThemeToggle() {
+
   isNightMode = !isNightMode;
+  document.body.classList.remove("day", "night");
+  document.body.classList.add(isNightMode ? "night" : "day");
 
   room.traverse((child) => {
   if (child.isMesh && child.material instanceof THREE.MeshBasicMaterial) {
@@ -87,10 +103,11 @@ function handleThemeToggle() {
   }
   });
   if(isNightMode){
-    scene.background = new THREE.Color(0x121111);
+    scene.background = new THREE.Color(0x121111); //dark grey
   }
   else{
-    scene.background = new THREE.Color(0xffffff);
+    scene.background = new THREE.Color(0xffffff); //white
+    
   }
 }
 
@@ -107,7 +124,7 @@ const pointer = new THREE.Vector2();
 let currentIntersects = [];
 let currentHoveredObject = null;
 
-// Added these for raycasting
+// For raycasting
 const raycasterObjects = [];
 const hitboxToObjectMap = new Map();
 
@@ -161,13 +178,12 @@ const modals = {
 
 ///EVENT LISTENERS
 
-
-
 document.querySelectorAll(".modal-exit-button").forEach(button => {
   button.addEventListener(
     "touchend", 
     (e)=>{
     const modal = e.target.closest(".modal");
+    click.play();
     hideModal(modal);
   }, 
   {passive : false});
@@ -177,6 +193,7 @@ document.querySelectorAll(".modal-exit-button").forEach(button => {
       "click", 
       (e)=>{
       const modal = e.target.closest(".modal");
+      click.play();
       hideModal(modal);
     }, 
     {passive : false});
@@ -225,21 +242,26 @@ function handleRaycasterInteraction(){
   if(currentIntersects.length>0){
     const object = currentIntersects[0].object;
     if(object.name.includes("Work_Button")){
+      click.play();
       showModal(modals.work);
     }
     else if(object.name.includes("About_Button")){
+      click.play();
       showModal(modals.about);
     }
     else if(object.name.includes("Contact_Button")){
+      click.play();
       showModal(modals.contact);
     }
     else if(object.name.includes("Lamp")){
+      lamp.play();
       handleThemeToggle();
     }
   }
 }
 
 window.addEventListener("click", handleRaycasterInteraction);
+
 
 window.addEventListener(
   "touchstart",
@@ -353,9 +375,6 @@ controls.minDistance = 5; //zoom in
 controls.maxDistance = 50; //zoom out
 
 controls.maxTargetRadius= 5;
-
-
-
 
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
