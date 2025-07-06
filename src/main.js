@@ -32,6 +32,18 @@ var click = new Howl({
 
 backgroundMusic.play();
 
+let isMusicPlaying = true;
+
+export function muteMusic(){
+    isMusicPlaying = !isMusicPlaying;
+    if(isMusicPlaying){
+        backgroundMusic.play();
+    }
+    else{
+        backgroundMusic.pause();
+    }
+}
+
 const sizes = {
   height: window.innerHeight,
   width: window.innerWidth

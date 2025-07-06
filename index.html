@@ -7,19 +7,27 @@
     <title>Andreea's Room</title>
   </head>
   <body class = "day">
+    <div id="language-switcher" style="position: fixed; top: 10px; right: 10px; z-index: 10000;">
+    <button id="btn-en">English</button>
+    <button id="btn-ro">Română</button>
+    <button id="mute">Mute Music</button>
+  </div>
+
 
     <div id="app"></div>
+    
     <div class="work modal">
-      <h1 class="modal-title">MY WORK</h1>
-      <p class="modal-body">WAWAWA ce fain aicia urmeaza text</p>
+      <button class="modal-exit-button">X</button>
+      <h1 id="work-title" class="modal-title">MY WORK</h1>
+      <p id="work-body" class="modal-body">WAWAWA ce fain aicia urmeaza text</p>
          
-        <button class="modal-exit-button">X</button>
+        
 
     </div>
 
     <div class="about modal">
-      <h1 class="modal-title">ABOUT</h1>
-      <p class="modal-body">Hi, I’m Andreea, an 18-year-old creative thinker from Romania. 
+      <h1 id="about-title" class="modal-title">ABOUT</h1>
+      <p id="about-body" class="modal-body">Hi, I’m Andreea, an 18-year-old creative thinker from Romania. 
         I’m passionate about combining technology with innovation to build meaningful and engaging experiences.
         <br><br>Throughout high school, I have developed strong skills in robotics, programming, and 3D design,
         complemented by a natural curiosity and eagerness to learn. Beyond technical expertise, I enjoy exploring creative
@@ -48,5 +56,6 @@
       <canvas id="experience-canvas" class="experience-canvas"></canvas>
     </div>
     <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/text.js"></script>
   </body>
 </html>
