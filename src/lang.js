@@ -9,9 +9,9 @@ export const translations = {
 
             <p>My technical experience includes several <b>hackathons</b>, such as the <b>ITEC hackathon</b> (game development category), and achieving <b>5th place</b> in the <b>40th edition of the Clasic Cloudflight Coding Contest</b>.</p>
 
-            <p>Additionally, I’ve competed in the <b>Informatics Olympiad</b> and represented my country in the <b>International Olympiad in Informatics in Teams</b>, where I honed my problem-solving and algorithmic thinking skills.</p>
+            <p>Additionally, I’ve competed in the <b>Informatics Olympiad</b> and in the <b>International Olympiad in Informatics in Teams</b>, where I improved my problem-solving and algorithmic thinking skills.</p>
 
-            <p>I’m also passionate about <b>3D modeling</b>, and have been teaching myself how to use <b>Blender</b>. I'm currently exploring <b>Fusion 360</b> to dive deeper into the technical aspects of design and engineering.</p>
+            <p>I’m also passionate about <b>3D modeling</b>. I taught myself Blender out of curiosity, gradually mastering its tools through hands-on practice. Despite the initial challenges, each step forward deepened both my technical skills and creative understanding. I also explored <b>Fusion 360</b> in order to dive deeper into the technical aspects of design and engineering.</p>
 
             <p>One of my favorite projects so far is this very website — a <b>3D interactive room</b> that serves as my personal portfolio. I designed and modeled the entire room from scratch in Blender, then brought it to life with code using <b>Three.js</b> and WebGL. It’s a fusion of both my technical skills and creative vision.</p>
             `,
@@ -19,12 +19,12 @@ export const translations = {
         aboutBody: `
             <p>Hi! I’m <b>Andreea</b>, an <b>18-year-old</b> from <b>Romania</b> who thrives at the intersection of creativity and technology.</p>
 
-            <p>I’ve always found joy in both artistic expression and logical problem-solving. Whether I’m programming, modeling in 3D, or working with a team to build something meaningful, I approach each challenge with curiosity and passion.</p>
+<p>I’ve always found joy in both artistic expression and logical problem-solving. Whether I’m programming, modeling in 3D, painting, or creating digital art, I approach each challenge with curiosity and passion.</p>
 
-            <p>Through my years of experience in my school’s robotics team and various technical competitions, I’ve learned how to organize complex tasks, communicate clearly, and bring out the best in the people I work with.</p>
+<p>Through my years of experience in my school’s robotics team and various technical competitions, I’ve learned how to organize complex tasks, communicate clearly, and bring out the best in the people I work with.</p>
 
-            <p>I love being part of collaborative environments and I’m especially drawn to projects that blend innovation with imagination. I’m excited to keep learning, growing, and contributing to teams where I can make a real impact.</p>
-            `,
+<p>I love being part of collaborative environments and I’m especially drawn to projects that blend innovation with imagination. I’m excited to keep learning, growing, and contributing to teams where I can make a real impact.</p>`
+,
     },
     ro:{
         workTitle: "PROIECTELE MELE",
