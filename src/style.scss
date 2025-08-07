@@ -39,8 +39,16 @@
 
 //Modals
 
-
-
+.modal {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-height: calc(100vh - 120px);
+  width: 90vw;
+  overflow-y: auto;
+  z-index: 9999;
+}
 
 body.day .modal {
   position: fixed;
@@ -63,7 +71,7 @@ body.day .modal {
 }
 
 body.night .modal {
-   position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -208,4 +216,25 @@ body.night #language-switcher button:hover {
   border-radius: 1.2rem;
   border: 8px solid rgb(229, 137, 155);
   font-size: 42px;
+}
+
+@media (max-width: 768px) {
+  body.day .modal,
+  body.night .modal {
+    width: 80vw;
+    max-width: 90vw;
+    max-height: 70vh;
+    font-size: 24px;
+    padding: 16px;
+  }
+
+  body.day .modal p,
+  body.night .modal p {
+    font-size: 18px;
+  }
+
+  body.day .modal h1,
+  body.night .modal h1 {
+    font-size: 24px;
+  }
 }
