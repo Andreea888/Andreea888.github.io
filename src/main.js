@@ -30,7 +30,7 @@ var click = new Howl({
  volume: 1,
 });
 
-backgroundMusic.play();
+
 
 let isMusicPlaying = true;
 
@@ -95,6 +95,85 @@ let isNightMode = false; //default day mode
 let scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffffff);
 
+const manager = new THREE.LoadingManager();
+
+const loadingScreen = document.querySelector(".loading-screen");
+const loadingScreenButton = document.querySelector(".loading-screen-button");
+
+let canRender=false;
+let touchHappened = false;
+
+manager.onLoad = function () {
+  loadingScreenButton.style.border = "8px solid rgb(229, 137, 155)";
+  loadingScreenButton.style.background = "#fcaec0";
+  loadingScreenButton.style.color = "#e6dede";
+  loadingScreenButton.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+  loadingScreenButton.textContent = "Enter!";
+  loadingScreenButton.style.cursor = "pointer";
+  loadingScreenButton.style.transition =
+    "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
+  let isDisabled = false;
+
+
+  function handleEnter() {
+    if (isDisabled) return;
+
+    loadingScreenButton.style.cursor = "default";
+    loadingScreenButton.style.border = "8px solid rgb(229, 137, 155)";
+    loadingScreenButton.style.background = "#fcaec0";
+    loadingScreenButton.style.color = "#e6dede";
+    loadingScreenButton.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+    loadingScreenButton.textContent = "WELCOME! ♡";
+    loadingScreen.style.background = "	#ffd1e7";
+    isDisabled = true;
+    canRender = true;
+    backgroundMusic.play();
+    playReveal();
+  }
+
+  loadingScreenButton.addEventListener("mouseenter", () => {
+    loadingScreenButton.style.transform = "scale(1.3)";
+  });
+
+  ["click", "touchend"].forEach(event => {
+  loadingScreenButton.addEventListener(event, (e) => {
+    e.preventDefault();
+    handleEnter();
+  }, { passive: false });
+});
+
+
+  loadingScreenButton.addEventListener("mouseleave", () => {
+    loadingScreenButton.style.transform = "none";
+  });
+};
+
+function playReveal() {
+  const tl = gsap.timeline();
+
+  tl.to(loadingScreen, {
+    scale: 0.5,
+    duration: 1.2,
+    delay: 0.25,
+    ease: "back.in(1.8)",
+  }).to(
+    loadingScreen,
+    {
+      y: "200vh",
+      transform: "perspective(1000px) rotateX(45deg) rotateY(-35deg)",
+      duration: 1.2,
+      ease: "back.in(1.8)",
+      onComplete: () => {
+        isModalOpen = false;
+
+
+      },
+    },
+    "-=0.1"
+  );
+}
+
+
 function handleThemeToggle() {
 
   isNightMode = !isNightMode;
@@ -147,7 +226,7 @@ const textureLoader = new THREE.TextureLoader();
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath("/draco/");
 
-const loader = new GLTFLoader();
+const loader = new GLTFLoader(manager);
 loader.setDRACOLoader(dracoLoader);
 
 
@@ -316,6 +395,7 @@ Object.entries(textureMap).forEach(([key, paths]) => {
 });
 
 let room;
+
 loader.load("/models/Room_Portfolio_Final20.glb", (glb) => {
   room = glb.scene;
   room.traverse((child) => {
@@ -360,6 +440,7 @@ loader.load("/models/Room_Portfolio_Final20.glb", (glb) => {
   });
   scene.add(room);
 });
+
 
 
 const fov = isMobile ? 80 : 40;
@@ -550,7 +631,9 @@ const render = () => {
       document.body.style.cursor = "default";
     }
   }
-  renderer.render(scene, camera);
+  if(canRender){
+    renderer.render(scene, camera);
+  }
 
   window.requestAnimationFrame(render);
 }

@@ -28,10 +28,13 @@
   left: 0;
   overflow: hidden;
   
-  #experience-canvas{
-    height: 100%;
-    width: 100%;
-  }
+  #experience-canvas {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+
+}
 }
 
 //Modals
@@ -176,4 +179,33 @@ body.day #language-switcher button:hover {
 body.night #language-switcher button:hover {
   background-color: #242033;
   color: rgb(239, 225, 255);
+}
+
+.loading-screen {
+  @include vars.centered;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 108vw;
+  height: 108vh;
+  margin-left: -54vw;
+  margin-top: -54vh;
+  overflow: hidden;
+  z-index: 999999;
+  border: 8px solid #d16d81;
+  background-color: 	#ffd1e7;
+  transform: perspective(1000px);
+  border-radius: 48px;
+}
+
+.loading-screen-button {
+  font-family: "Funny Hello", sans-serif;
+  @include vars.centered;
+  background-color: transparent;
+  padding: 10px 40px;
+  outline: none;
+  color: #e6dede;
+  border-radius: 1.2rem;
+  border: none;
+  font-size: 42px;
 }

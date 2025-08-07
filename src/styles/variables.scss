@@ -3,3 +3,9 @@ $base-beige: #fad6d6;
 
 $base-white: #efefef;
 $base-black: #101010;
+
+@mixin centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
