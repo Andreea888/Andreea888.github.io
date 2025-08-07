@@ -201,11 +201,11 @@ body.night #language-switcher button:hover {
 .loading-screen-button {
   font-family: "Funny Hello", sans-serif;
   @include vars.centered;
-  background-color: transparent;
+  background-color: #fcaec0;
   padding: 10px 40px;
   outline: none;
   color: #e6dede;
   border-radius: 1.2rem;
-  border: none;
+  border: 8px solid rgb(229, 137, 155);
   font-size: 42px;
 }
