@@ -1,6 +1,7 @@
 import { translations } from './lang.js';
 import { muteMusic } from './main.js'
 
+
 const workTitle = document.getElementById('work-title');
 const workBody = document.getElementById('work-body');
 const aboutTitle = document.getElementById('about-title');
@@ -17,8 +18,15 @@ function setLanguage(lang) {
 
 
 setLanguage('en'); 
+const isMobile = navigator.userAgent.includes("Mobi");
 
-
-document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
-document.getElementById('btn-ro').addEventListener('click', () => setLanguage('ro'));
-document.getElementById('mute').addEventListener('click', () => muteMusic());
+if(!isMobile){
+  document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
+  document.getElementById('btn-ro').addEventListener('click', () => setLanguage('ro'));
+  document.getElementById('mute').addEventListener('click', () => muteMusic());
+}
+else{
+  document.getElementById('btn-en').addEventListener('touchend', () => setLanguage('en'));
+  document.getElementById('btn-ro').addEventListener('touchend', () => setLanguage('ro'));
+  document.getElementById('mute').addEventListener('touchend', () => muteMusic());
+}
