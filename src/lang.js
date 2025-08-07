@@ -29,27 +29,27 @@ export const translations = {
     ro:{
         workTitle: "PROIECTELE MELE",
         workBody: `
-            <p>În liceu am fost un membru activ al echipei de <b>robotică</b>, unde am lucrat în principal ca <b>programator</b>. 
-            Implicarea mea nu s-a limitat doar la partea tehnică — am contribuit și la <b>gestionarea conturilor de social media</b> ale echipei și m-am ocupat de <b>găsirea de sponsori</b> pentru a susține activitățile noastre.</p>
+            <p>In liceu am fost un membru activ al echipei de <b>robotica</b>, unde am lucrat in principal ca <b>programator</b>. 
+            Implicarea mea nu s-a limitat doar la partea tehnica — am contribuit si la <b>gestionarea conturilor de social media</b> ale echipei si m-am ocupat de <b>gasirea de sponsori</b> pentru a sustine activitatile noastre.</p>
 
-            <p>Am participat la numeroase <b>evenimente locale</b> și <b>târguri de știință</b>, care m-au ajutat să îmi dezvolt abilitățile de comunicare și prezentare a ideilor tehnice într-un mod accesibil și clar.</p>
+<p>Am participat la numeroase <b>evenimente locale</b> si <b>targuri de stiinta</b>, care m-au ajutat sa imi dezvolt abilitatile de comunicare si prezentare a ideilor tehnice intr-un mod accesibil si clar.</p>
 
-            <p>Am acumulat experiență și prin diverse <b>hackathoane</b>, precum <b>ITEC</b> (categoria game development), și am participat și la <b>Clasic Cloudflight Coding Contest</b>, unde m-am clasat în prima parte a clasamentului.</p>
+<p>Am acumulat experienta si prin diverse <b>hackathoane</b>, precum <b>ITEC</b> (categoria game development), si am participat si la <b>Clasic Cloudflight Coding Contest</b>, unde m-am clasat in prima parte a clasamentului.</p>
 
-            <p>De asemenea, am participat la <b>Olimpiada de Informatică</b> și la <b>Olimpiada Internațională de Informatică pe Echipe</b>, unde mi-am perfecționat gândirea algoritmică și abilitățile de rezolvare a problemelor.</p>
+<p>De asemenea, am participat la <b>Olimpiada de Informatica</b> si la <b>Olimpiada Internationala de Informatica pe Echipe</b>, unde mi-am perfectionat gandirea algoritmica si abilitatile de rezolvare a problemelor.</p>
 
-            <p>Pe partea creativă, învăț în mod autodidact <b>modelare 3D în Blender</b>, explorând felul în care designul vizual poate completa tehnologia. În același timp, sunt interesată să aprofundez <b>designul tehnic în Fusion 360</b>, pentru a crea modele precise, funcționale și aplicabile în inginerie.</p>
+<p>Pe partea creativa, invat in mod autodidact <b>modelare 3D in Blender</b>, explorand felul in care designul vizual poate completa tehnologia. In acelasi timp, sunt interesata sa aprofundez <b>designul tehnic in Fusion 360</b>, pentru a crea modele precise, functionale si aplicabile in inginerie.</p>
 
-            <p>Unul dintre proiectele mele preferate este chiar acest site — o <b>cameră 3D interactivă</b> care funcționează ca un portofoliu personal. Am proiectat și modelat întreaga cameră de la zero în Blender, iar apoi am programat-o într-un website folosind <b>Three.js</b> și WebGL. Este o fuziune armonioasă între partea mea creativă și competențele tehnice.</p>
-            `,
+<p>Unul dintre proiectele mele preferate este chiar acest site — o <b>camera 3D interactiva</b> care functioneaza ca un portofoliu personal. Am proiectat si modelat intreaga camera de la zero in Blender, iar apoi am programat-o intr-un website folosind <b>Three.js</b> si WebGL. Este o fuziune armonioasa intre partea mea creativa si competentele tehnice.</p>`,
+
         aboutTitle: "DESPRE MINE",
         aboutBody: `
-            <p>Mă numesc Andreea, am 18 ani și sunt din România. Sunt o persoană creativă, căreia îi place să îmbine latura artistică cu cea tehnică, creând astfel proiecte care ies din tipare.</p>
+            <p>Ma numesc Andreea, am 18 ani si sunt din Romania. Sunt o persoana creativa, careia ii place sa imbine latura artistica cu cea tehnica, creand astfel proiecte care ies din tipare.</p>
 
-            <p>Pasiunea mea pentru tehnologie se combină cu spiritul meu inovator și cu dorința de a colabora în echipe. Experiența acumulată în liceu, mai ales în cadrul echipei de robotică, m-a ajutat să dezvolt abilități solide de comunicare, organizare și coordonare a sarcinilor într-un mediu de lucru dinamic.</p>
+<p>Pasiunea mea pentru tehnologie se combina cu spiritul meu inovator si cu dorinta de a colabora in echipe. Experienta acumulata in liceu, mai ales in cadrul echipei de robotica, m-a ajutat sa dezvolt abilitati solide de comunicare, organizare si coordonare a sarcinilor intr-un mediu de lucru dinamic.</p>
 
-            <p>Sunt motivată de provocări și apreciez lucrul în echipă, unde pot contribui cu idei și soluții creative, dar și să învăț continuu prin colaborare și schimb de experiențe.</p>
-            `,
+<p>Sunt motivata de provocari si apreciez lucrul in echipa, unde pot contribui cu idei si solutii creative, dar si sa invat continuu prin colaborare si schimb de experiente.</p>`,
+
     },
 
 }
