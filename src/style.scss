@@ -36,7 +36,16 @@
 
 }
 }
-
+.instructions {
+  position: absolute;
+  top: calc(50% + 80px); 
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Funny Hello";
+  font-size: 26px;
+  color : rgb(200, 131, 131);
+  text-align: center;
+}
 //Modals
 
 .modal {
