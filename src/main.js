@@ -104,6 +104,7 @@ let canRender=false;
 let touchHappened = false;
 
 manager.onLoad = function () {
+  preloadTextures();
   loadingScreenButton.style.border = "8px solid rgb(229, 137, 155)";
   loadingScreenButton.style.background = "#fcaec0";
   loadingScreenButton.style.color = "#e6dede";
@@ -114,7 +115,12 @@ manager.onLoad = function () {
     "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
   let isDisabled = false;
 
-
+  
+  function preloadTextures(){ //cache all textures on the GPU in the loading screen to prevent lag the first theme-change
+    handleThemeToggle();
+    renderer.render(scene,camera);
+    handleThemeToggle();
+  }
   function handleEnter() {
     if (isDisabled) return;
 
@@ -128,6 +134,7 @@ manager.onLoad = function () {
     isDisabled = true;
     canRender = true;
     backgroundMusic.play();
+    
     playReveal();
   }
 
@@ -150,7 +157,6 @@ manager.onLoad = function () {
 
 function playReveal() {
   const tl = gsap.timeline();
-
   tl.to(loadingScreen, {
     scale: 0.5,
     duration: 1.2,
@@ -584,6 +590,7 @@ function playHoverAnimation(object, isHovering){
   }
 }
 
+let textureLoaded = false;
 
 const render = () => {
   controls.update();
